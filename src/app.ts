@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import { appRoutes } from './routes/index.routes'
 
 const app = express()
 app.use(express.json())
@@ -11,6 +12,6 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-app.use('/users')
+app.use(appRoutes)
 
 export default app;
