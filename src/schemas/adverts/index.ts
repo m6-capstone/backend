@@ -11,6 +11,7 @@ export const createAdvertSchema = yup.object().shape({
   vehicleType: yup.string().oneOf(VehicleTypes).required(),
   coverImage: yup.string().required(),
   galleryImages: yup.array().of(yup.string()).required(),
+  userId: yup.string().required(),
 });
 
 export interface IAdvertCreateRequestTest
