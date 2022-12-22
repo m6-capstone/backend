@@ -4,6 +4,7 @@ import { deleteAdvertController } from "../../controllers/adverts/deleteAdvert.c
 import { listAllAdvertsController } from "../../controllers/adverts/listAllAdverts.controller";
 import { retrieveAdvertsController } from "../../controllers/adverts/retrieveAdvert.controller";
 import { updateAdvertController } from "../../controllers/adverts/updateAdvert.controller";
+import validateUuidMiddleware from "../../middlewares/validateUuid.middleware";
 import validationSchemaMiddleware from "../../middlewares/validationSchema.middleware";
 import { createAdvertSchema, updateAdvertSchema } from "../../schemas/adverts";
 
@@ -18,9 +19,10 @@ advertsRoutes.post(
 );
 advertsRoutes.patch(
   "/:id",
+  validateUuidMiddleware,
   validationSchemaMiddleware(updateAdvertSchema),
   updateAdvertController
 );
-advertsRoutes.delete("/:id", deleteAdvertController);
+advertsRoutes.delete("/:id", validateUuidMiddleware, deleteAdvertController);
 
 export { advertsRoutes };

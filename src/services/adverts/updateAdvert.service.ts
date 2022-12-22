@@ -3,6 +3,7 @@ import { Adverts } from "../../entities/adverts";
 import AppError from "../../errors/AppError";
 import { IAdvertUpdateRequest } from "../../interfaces/adverts";
 
+
 export const updateAdvertService = async (
   id: string,
   {
@@ -21,7 +22,7 @@ export const updateAdvertService = async (
 ) => {
   const advertsRepository = AppDataSource.getRepository(Adverts);
   const findAdvert = await advertsRepository.findOneBy({
-    id: id,
+    id,
   });
 
   if (!findAdvert) {
