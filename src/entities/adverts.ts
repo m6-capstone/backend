@@ -32,10 +32,10 @@ export class Adverts {
   @Column("text", { array: true })
   galleryImages: string[];
 
-  @Column()
+  @Column({default:true}) 
   isActive: boolean;
 
-  @Column()
+  @Column({default:true})
   isPublished: boolean;
   @Column()
   userId: string;

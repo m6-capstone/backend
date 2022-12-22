@@ -1,17 +1,24 @@
 import { Request, Response, NextFunction } from "express";
-import { AnySchema } from "yup"
+import { AnySchema } from "yup";
 import AppError from "../errors/AppError";
 
-const validationSchemaMiddleware = (schema: AnySchema) => async (req: Request, res: Response, next: NextFunction) => {
+const validationSchemaMiddleware =
+  (schema: AnySchema) =>
+  async (request: Request, response: Response, next: NextFunction) => {
     try {
-        const data = req.body;
-        const validatedData = await schema.validate(data);
-        req.body = validatedData;
-        next();
-        
-    } catch (error: any) {
-        throw new AppError(error.errors?.join(", "), 400);
+      const data = request.body;
+      const validatedData = await schema.validate(data, {
+        abortEarly: false,
+        stripUnknown: true,
+      });
+
+      request.body = validatedData;
+      next();
+    } catch (err: any) {
+      return response.status(400).json({
+        message: err.errors?.join(", "),
+      });
     }
-};
+  };
 
 export default validationSchemaMiddleware;
