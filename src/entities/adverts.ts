@@ -5,8 +5,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  OneToMany
 } from "typeorm";
 import { User } from "./user";
+import { Comments } from "./comments";
 
 @Entity("adverts")
 export class Adverts {
@@ -48,6 +50,9 @@ export class Adverts {
 
   @ManyToOne(() => User, (user) => user.adverts)
   user: User;
+
+  @OneToMany(() => Comments, (comments) => comments.adverts)
+  comments: Comments;
 
   @CreateDateColumn()
   createdAt: Date;

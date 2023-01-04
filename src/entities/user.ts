@@ -5,9 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  OneToOne
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { Adverts } from "./adverts";
+import { Comments } from './comments'
+import { Address } from "./address";
 
 @Entity("user")
 export class User {
@@ -50,4 +53,12 @@ export class User {
 
   @OneToMany(() => Adverts, (adverts) => adverts.user)
   adverts: Adverts[];
+
+  @OneToMany(() => Comments, (comments) => comments.user)
+  comments: Comments[];
+
+  @OneToOne((type) => Address,{
+    eager: true
+  })
+  address: Address;
 }
