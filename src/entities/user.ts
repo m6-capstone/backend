@@ -60,5 +60,5 @@ export class User {
   @OneToOne((type) => Address,{
     eager: true
   })
-  address: Address
+  address: Address;
 }
