@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+} from "typeorm";
+import { User } from "./user";
 
 @Entity("adverts")
 export class Adverts {
@@ -32,11 +40,18 @@ export class Adverts {
   @Column("text", { array: true })
   galleryImages: string[];
 
-  @Column({default:true}) 
+  @Column({ default: true })
   isActive: boolean;
 
-  @Column({default:true})
+  @Column({ default: true })
   isPublished: boolean;
-  @Column()
-  userId: string;
+
+  @ManyToOne(() => User, (user) => user.adverts)
+  user: User;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
