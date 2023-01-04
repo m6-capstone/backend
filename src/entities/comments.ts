@@ -1,4 +1,4 @@
-import { Entity,Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { User } from "./user";
 import { Adverts } from "./adverts";
 
@@ -11,8 +11,8 @@ export class Comments {
   text: string;
   
   @ManyToOne(() => User, (user) => user.comments)
-  user: User[];
+  user: User;
 
   @ManyToOne(() => Adverts, (adverts) => adverts.comments)
-  adverts: Adverts[];
+  adverts: Adverts;
 }
