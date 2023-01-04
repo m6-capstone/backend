@@ -6,5 +6,5 @@ export const createUserController = async (req: Request, res: Response) => {
     const UserData: IUserCreateRequest = req.body;
     
     const users = await createUserService(UserData);
-    return res.status(201).json(users)
+    return res.status(201).json(users);
 }
