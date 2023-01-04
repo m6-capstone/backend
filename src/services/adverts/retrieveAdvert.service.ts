@@ -5,9 +5,7 @@ import { IAdvertCreateResponse } from "../../interfaces/adverts";
 
 export const retireveAdvertsService = async (id: string) => {
   const advertsRepository = AppDataSource.getRepository(Adverts);
-  const adverts: IAdvertCreateResponse[] = await advertsRepository.findBy({
-    userId: id,
-  });
+  const adverts = await advertsRepository.findOneBy({id});
 
   if (!adverts) {
     throw new AppError("User not Found", 400);

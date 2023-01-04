@@ -7,5 +7,15 @@ export interface IUserCreateRequest{
     description: string;
     isSeller: boolean;
     password: string;
-    isActive: boolean;
+}
+
+export interface IUserUpdateRequest{
+    name: string;
+    email: string;
+    cpf: string;
+    cellphone: string;
+    birthdate: string;
+    description: string;
+    isSeller: boolean;
+    password: string;
 }
