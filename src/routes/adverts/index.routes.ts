@@ -4,6 +4,7 @@ import { deleteAdvertController } from "../../controllers/adverts/deleteAdvert.c
 import { listAllAdvertsController } from "../../controllers/adverts/listAllAdverts.controller";
 import { retrieveAdvertsController } from "../../controllers/adverts/retrieveAdvert.controller";
 import { updateAdvertController } from "../../controllers/adverts/updateAdvert.controller";
+import ensureAuthTokenMiddleware from "../../middlewares/ensureAuthToken.middleware";
 import validateUuidMiddleware from "../../middlewares/validateUuid.middleware";
 import validationSchemaMiddleware from "../../middlewares/validationSchema.middleware";
 import { createAdvertSchema, updateAdvertSchema } from "../../schemas/adverts";
@@ -14,15 +15,22 @@ advertsRoutes.get("/:userId", retrieveAdvertsController);
 advertsRoutes.get("/", listAllAdvertsController);
 advertsRoutes.post(
   "/",
+  ensureAuthTokenMiddleware,
   validationSchemaMiddleware(createAdvertSchema),
   createAdvertController
 );
 advertsRoutes.patch(
   "/:id",
+  ensureAuthTokenMiddleware,
   validateUuidMiddleware,
   validationSchemaMiddleware(updateAdvertSchema),
   updateAdvertController
 );
-advertsRoutes.delete("/:id", validateUuidMiddleware, deleteAdvertController);
+advertsRoutes.delete(
+  "/:id",
+  ensureAuthTokenMiddleware,
+  validateUuidMiddleware,
+  deleteAdvertController
+);
 
 export { advertsRoutes };
