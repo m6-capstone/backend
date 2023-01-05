@@ -5,7 +5,7 @@ export const retrieveAdvertsController = async (
   req: Request,
   res: Response
 ) => {
-  const id: string = req.params.userId;
-  const newAdverts = await retireveAdvertsService(id);
+  const userId: string = req.params.userId;
+  const newAdverts = await retireveAdvertsService(userId);
   return res.status(201).json(newAdverts);
 };
