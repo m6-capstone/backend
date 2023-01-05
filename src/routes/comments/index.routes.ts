@@ -3,6 +3,6 @@ import { createCommentsController } from "../../controllers/comments/comments.co
 
 const commentsRoutes = Router();
 
-commentsRoutes.post("/", createCommentsController)
+commentsRoutes.post("/", createCommentsController);
 
 export { commentsRoutes};

@@ -9,13 +9,13 @@ export const createCommentsService = async ({text, userId, advertsId}:ICommentsC
     const usersRepository = AppDataSource.getRepository(User);
     const user = await usersRepository.findOneBy({id: userId})
     if(!user){
-        throw new AppError("User not found", 404)
+        throw new AppError("User not found", 404);
     }
     
     const advertsRepository = AppDataSource.getRepository(Adverts);
     const adverts = await advertsRepository.findOneBy({id: advertsId})
     if(!adverts){
-        throw new AppError("Advert not found", 404)
+        throw new AppError("Advert not found", 404);
     }
 
     const commentsRepository = AppDataSource.getRepository(Comments);

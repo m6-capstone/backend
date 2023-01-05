@@ -4,8 +4,8 @@ import { createCommentsService } from "../../services/comments/createComments.se
 
 
 export const createCommentsController = async (req: Request, res: Response) => {
-    //advertsId: req.params.id
-    //userId: req.users
+    //advertsId: req.params.id;
+    //userId: req.users;
     const { text, userId, advertsId }: ICommentsCreateRequest = req.body;
     
     const users = await createCommentsService({text, userId, advertsId});
