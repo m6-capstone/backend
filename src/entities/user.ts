@@ -5,8 +5,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
-  OneToOne
+  OneToOne,
+  JoinColumn
 } from "typeorm";
+
 import { Exclude } from "class-transformer";
 import { Adverts } from "./adverts";
 import { Comments } from './comments'
@@ -57,8 +59,7 @@ export class User {
   @OneToMany(() => Comments, (comments) => comments.user)
   comments: Comments[];
 
-  @OneToOne((type) => Address,{
-    eager: true
-  })
+  @OneToOne((type) => Address,{eager: true})
+  @JoinColumn()
   address: Address;
 }

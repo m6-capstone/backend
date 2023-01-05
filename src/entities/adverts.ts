@@ -52,7 +52,7 @@ export class Adverts {
   user: User;
 
   @OneToMany(() => Comments, (comments) => comments.adverts)
-  comments: Comments;
+  comments: Comments[];
 
   @CreateDateColumn()
   createdAt: Date;
