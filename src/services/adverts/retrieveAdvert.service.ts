@@ -1,33 +1,17 @@
 import AppDataSource from "../../data-source";
 import { Adverts } from "../../entities/adverts";
-import {AppError} from "../../errors/AppError";
-import { IAdvertCreateResponse, IAdvertListAllResponse } from "../../interfaces/adverts";
-import { AuctionAdvert, CommonAdvert } from "../../utils/adverts";
+import { AppError } from "../../errors/AppError";
 
-export const retireveAdvertsService = async (userId: string) => {
+export const retireveAdvertService = async (id: string) => {
   const advertsRepository = AppDataSource.getRepository(Adverts);
-  const commonAdverts: IAdvertCreateResponse[] = await advertsRepository.find({
+
+  const advert = await advertsRepository.findOne({
     relations: { user: true },
-    where: {
-      user: { id: userId },
-      advertsType: CommonAdvert,
-      isPublished: true,
-    },
+    where: { id: id },
   });
 
-  const auctionAdverts: IAdvertCreateResponse[] = await advertsRepository.find({
-    relations: { user: true },
-    where: {
-      user: { id: userId },
-      advertsType: AuctionAdvert,
-      isPublished: true,
-    },
-  });
-
-  const adverts: IAdvertListAllResponse = {
-    common: commonAdverts,
-    auction: auctionAdverts,
-  };
-
-  return adverts;
+  if (!advert) {
+    throw new AppError("advert Not Found", 400);
+  }
+  return advert;
 };
