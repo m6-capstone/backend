@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
 import { Adverts } from "../../entities/adverts";
-import AppError from "../../errors/AppError";
+import {AppError} from "../../errors/AppError";
 import { IAdvertDeleteReponse } from "../../interfaces/adverts";
 
 export const deleteAdvertService = async (id: string, userId: string) => {

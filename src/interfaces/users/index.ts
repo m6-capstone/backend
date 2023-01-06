@@ -1,3 +1,6 @@
+import { IAddresCreate } from "../addres";
+
+
 export interface IUserCreateRequest{
     name: string;
     email: string;

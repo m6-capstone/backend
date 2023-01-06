@@ -1,5 +1,5 @@
 import AppDataSource from "../../data-source";
-import AppError from "../../errors/AppError";
+import {AppError} from "../../errors/AppError";
 import { User } from "../../entities/user";
 import { Adverts } from "../../entities/adverts";
 import { Comments } from "../../entities/comments";

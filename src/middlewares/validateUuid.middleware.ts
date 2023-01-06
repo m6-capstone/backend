@@ -1,7 +1,7 @@
 import { validate } from "uuid";
 
 import { Request, Response, NextFunction } from "express";
-import AppError from "../errors/AppError";
+import {AppError} from "../errors/AppError";
 
 const validateUuidMiddleware = async (
   request: Request,

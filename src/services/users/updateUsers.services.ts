@@ -1,5 +1,5 @@
 import AppDataSource from "../../data-source";
-import AppError from "../../errors/AppError";
+import {AppError} from "../../errors/AppError";
 import { User } from "../../entities/user";
 import { IUserUpdateRequest } from "../../interfaces/users";
 import bcrypt from 'bcryptjs'
