@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ICommentsCreateRequest } from "../../interfaces/comments";
 import { createCommentsService } from "../../services/comments/createComments.services";
+import { deleteCommentsService } from "../../services/comments/deleteComments.services";
 import { listCommentsService } from "../../services/comments/listComments.services";
 
 export const createCommentsController = async (req: Request, res: Response) => {
@@ -14,5 +15,13 @@ export const createCommentsController = async (req: Request, res: Response) => {
 
 export const listCommentsController = async (req: Request, res: Response) => {
   const comments = await listCommentsService();
+  return res.status(200).json(comments);
+};
+
+export const deleteCommentsController = async (req: Request, res: Response) => {
+  const commentsId: string = req.params.id;
+  const userId: string =  req.users.userId
+
+  const comments = await deleteCommentsService(commentsId, userId);
   return res.status(200).json(comments);
 };

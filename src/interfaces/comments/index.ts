@@ -3,3 +3,7 @@ export interface ICommentsCreateRequest{
     userId?: string;
     advertsId?: string;
 }
+
+export interface ICommentsDeleteReponse {
+    message: string;
+}
