@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  OneToMany
+  OneToMany,
 } from "typeorm";
 import { User } from "./user";
 import { Comments } from "./comments";
@@ -48,7 +48,7 @@ export class Adverts {
   @Column({ default: true })
   isPublished: boolean;
 
-  @ManyToOne(() => User, (user) => user.adverts)
+  @ManyToOne(() => User, (user) => user.adverts, { eager: true })
   user: User;
 
   @OneToMany(() => Comments, (comments) => comments.adverts)
