@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import {AppError} from "../errors/AppError";
+import { AppError } from "../errors/AppError";
 
 const ensureAuthTokenMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  let token = req.body.token.slice(10, -2);
+  const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
     throw new AppError("There are not a token", 401);
