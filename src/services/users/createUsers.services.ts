@@ -6,8 +6,6 @@ import { hash } from "bcryptjs";
 import { Address } from "../../entities/address";
 import { IAddresCreate } from "../../interfaces/addres";
 
-
-
 export const createUserService = async (
   {
     name,
