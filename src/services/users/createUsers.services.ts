@@ -7,43 +7,21 @@ import { Address } from "../../entities/address";
 import { IAddresCreate } from "../../interfaces/addres";
 
 export const createUserService = async (
-  {
-    name,
-    email,
-    cpf,
-    cellphone,
-    birthdate,
-    description,
-    isSeller,
-    password,
-  }: IUserCreateRequest,
+  userData: IUserCreateRequest,
   addresData: IAddresCreate
 ) => {
   const userRepository = AppDataSource.getRepository(User);
   const addresRepository = AppDataSource.getRepository(Address);
-  const users = await userRepository.find();
 
-  const emailAlreadyExists = users.find((users) => users.email === email);
+  const emailAlreadyExists = await userRepository.findOneBy({email: userData.email})
 
   if (emailAlreadyExists) {
     throw new AppError("Email already exists", 401);
   }
-
   const newAddres = addresRepository.create({ ...addresData });
-
   await addresRepository.save(newAddres);
-
-  const newPassword = await hash(password, 10);
-
   const user = userRepository.create({
-    name,
-    email,
-    cpf,
-    cellphone,
-    birthdate,
-    description,
-    isSeller,
-    password: newPassword,
+    ...userData,
     adverts: [],
     comments: [],
     address: newAddres,

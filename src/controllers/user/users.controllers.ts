@@ -8,6 +8,7 @@ import { updateUserService } from "../../services/users/updateUsers.services";
 import { listUserService } from "../../services/users/listUsers.services";
 import { retrieveUserService } from "../../services/users/retrieveUser.services";
 import { autoRetrieveUserService } from "../../services/users/autoRetrieve.services";
+import { instanceToPlain } from "class-transformer";
 
 export const createUserController = async (req: Request, res: Response) => {
   const {
@@ -26,7 +27,7 @@ export const createUserController = async (req: Request, res: Response) => {
     { name, email, cpf, cellphone, birthdate, description, isSeller, password },
     addresData
   );
-  return res.status(201).json(users);
+  return res.status(201).json(instanceToPlain(users));
 };
 
 export const listUserController = async (req: Request, res: Response) => {
