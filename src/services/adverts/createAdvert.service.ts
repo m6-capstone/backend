@@ -1,6 +1,7 @@
 import AppDataSource from "../../data-source";
 import { Adverts } from "../../entities/adverts";
 import { User } from "../../entities/user";
+import { AppError } from "../../errors/AppError";
 import {
   IAdvertCreateRequest,
   IAdvertCreateResponse,
@@ -14,10 +15,11 @@ export const createAdvertService = async (
   const userRepository = AppDataSource.getRepository(User);
   const user = await userRepository.findOneBy({ id: userId });
 
-  const newAdvert: IAdvertCreateResponse = advertsRepository.create({
-    ...AdvertsData,
-    user: user!,
-  });
+  if(!user){
+    throw new AppError("user not exists",400)
+  }
+
+  const newAdvert: IAdvertCreateResponse = advertsRepository.create({...AdvertsData,user:user!});
   await advertsRepository.save(newAdvert);
 
   return newAdvert;
