@@ -12,7 +12,8 @@ const corsOptions = {
   credentials: true,
   optionSuccessStatus: 200,
 };
-app.use(cors(corsOptions));
+
+app.use(cors());
 
 const bodyParser = require("body-parser");
 const swaggerUi = require("swagger-ui-express");

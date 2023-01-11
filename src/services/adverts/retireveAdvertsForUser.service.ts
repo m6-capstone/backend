@@ -14,6 +14,7 @@ import {
 
 export const retireveAdvertsForUserService = async (userId: string) => {
   const advertsRepository = AppDataSource.getRepository(Adverts);
+  
   const commonAdverts: IAdvertCreateResponse[] = await advertsRepository.find({
     relations: { user: true },
     where: {
