@@ -1,4 +1,4 @@
-import { IAddresCreate } from "../addres";
+import { IAddresCreate, IAddresUpdate } from "../addres";
 
 
 export interface IUserCreateRequest{
@@ -23,13 +23,13 @@ export interface IUserCreateRequestComplete extends IAddresCreate{
     password: string;
 }
 
-export interface IUserUpdateRequest{
-    name: string;
-    email: string;
-    cpf: string;
-    cellphone: string;
-    birthdate: string;
-    description: string;
-    isSeller: boolean;
-    password: string;
+export interface IUserUpdateRequest extends IAddresUpdate{
+    name?: string;
+    email?: string;
+    cpf?: string;
+    cellphone?: string;
+    birthdate?: string;
+    description?: string;
+    isSeller?: boolean;
+    password?: string;
 }

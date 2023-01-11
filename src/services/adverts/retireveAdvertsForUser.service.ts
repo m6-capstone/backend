@@ -5,7 +5,12 @@ import {
   IAdvertCreateResponse,
   IAdvertListAllResponse,
 } from "../../interfaces/adverts";
-import { AuctionAdvert, CommonAdvert } from "../../utils/adverts";
+import {
+  AuctionAdvert,
+  CommonAdvert,
+  VehicleTypeMotorcycle,
+  VehicleTypeCar,
+} from "../../utils/adverts";
 
 export const retireveAdvertsForUserService = async (userId: string) => {
   const advertsRepository = AppDataSource.getRepository(Adverts);
@@ -28,7 +33,12 @@ export const retireveAdvertsForUserService = async (userId: string) => {
   });
 
   const adverts: IAdvertListAllResponse = {
-    common: commonAdverts,
+    common: {
+      cars: commonAdverts.filter((c) => c.vehicleType == VehicleTypeCar),
+      motorcycles: commonAdverts.filter(
+        (m) => m.vehicleType == VehicleTypeMotorcycle
+      ),
+    },
     auction: auctionAdverts,
   };
 

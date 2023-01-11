@@ -2,7 +2,6 @@ import AppDataSource from "../../data-source";
 import {AppError} from "../../errors/AppError";
 import { User } from "../../entities/user";
 import { IUserCreateRequest } from "../../interfaces/users";
-import { hash } from "bcryptjs";
 import { Address } from "../../entities/address";
 import { IAddresCreate } from "../../interfaces/addres";
 
