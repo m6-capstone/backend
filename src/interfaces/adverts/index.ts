@@ -36,7 +36,12 @@ export interface IAdvertDeleteReponse {
   message: string;
 }
 
+export interface IcarInterface {
+  cars: IAdvertCreateResponse[];
+  motorcycles: IAdvertCreateResponse[];
+}
+
 export interface IAdvertListAllResponse {
-  common: IAdvertCreateResponse[];
+  common: IcarInterface;
   auction: IAdvertCreateResponse[];
 }

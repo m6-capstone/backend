@@ -37,10 +37,11 @@ export const listUserController = async (req: Request, res: Response) => {
 
 export const updateUserController = async (req: Request, res: Response) => {
   const UserData: IUserUpdateRequest = req.body;
-  const id: string = req.params.id;
+  const id: string = req.users.userId;
 
   const users = await updateUserService(id, { ...UserData });
   return res.status(200).json(users);
+
 };
 
 export const retrieveUserController = async (req: Request, res: Response) => {
