@@ -17,7 +17,7 @@ export class Comments {
   @Column()
   text: string;
 
-  @ManyToOne(() => User, (user) => user.comments)
+  @ManyToOne(() => User, (user) => user.comments, { eager: true })
   user: User;
 
   @ManyToOne(() => Adverts, (adverts) => adverts.comments)
