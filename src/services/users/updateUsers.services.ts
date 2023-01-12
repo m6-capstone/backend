@@ -2,7 +2,6 @@ import AppDataSource from "../../data-source";
 import { AppError } from "../../errors/AppError";
 import { User } from "../../entities/user";
 import { IUserUpdateRequest } from "../../interfaces/users";
-import bcrypt from "bcryptjs";
 import { Address } from "../../entities/address";
 
 export const updateUserService = async (
@@ -24,7 +23,7 @@ export const updateUserService = async (
     complement,
   }: IUserUpdateRequest
 ) => {
-  const adressRepository = AppDataSource.getMongoRepository(Address);
+  const adressRepository = AppDataSource.getRepository(Address);
   const userRepository = AppDataSource.getRepository(User);
   const users = await userRepository.findOneBy({ id });
 
