@@ -8,12 +8,10 @@ export const updateUserService = async (
   id: string,
   {
     name,
-    email,
     cpf,
     cellphone,
     birthdate,
     description,
-    isSeller,
     password,
     cep,
     state,
@@ -35,12 +33,10 @@ export const updateUserService = async (
 
   await userRepository.update(id, {
     name: name ? name : users?.name,
-    email: email ? email : users?.email,
     cpf: cpf ? cpf : users?.cpf,
     cellphone: cellphone ? cellphone : users?.cellphone,
     birthdate: birthdate ? birthdate : users?.birthdate,
     description: description ? description : users?.description,
-    isSeller: isSeller ? isSeller : users?.isSeller,
     password: password ? password : users?.password,
   });
 

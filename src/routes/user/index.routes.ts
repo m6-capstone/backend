@@ -7,12 +7,21 @@ import {
 import { updateUserController } from "../../controllers/user/users.controllers";
 import { listUserController } from "../../controllers/user/users.controllers";
 import ensureAuthTokenMiddleware from "../../middlewares/ensureAuthToken.middleware";
-import  validationSchemaMiddleware  from "../../middlewares/validationSchema.middleware"
-import { createUserSchema } from "../../schemas/user";
+import validationSchemaMiddleware from "../../middlewares/validationSchema.middleware";
+import { createUserSchema, updateUserSchema } from "../../schemas/user";
 const usersRoutes = Router();
 
-usersRoutes.post("/", validationSchemaMiddleware(createUserSchema),createUserController);
-usersRoutes.patch("/:id", ensureAuthTokenMiddleware, updateUserController);
+usersRoutes.post(
+  "/",
+  validationSchemaMiddleware(createUserSchema),
+  createUserController
+);
+usersRoutes.patch(
+  "/:id",
+  ensureAuthTokenMiddleware,
+  validationSchemaMiddleware(updateUserSchema),
+  updateUserController
+);
 usersRoutes.get("/", listUserController);
 usersRoutes.get(
   "/profile",

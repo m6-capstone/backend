@@ -22,7 +22,6 @@ export const createUserSchema = yup.object().shape({
 
 export const updateUserSchema = yup.object().shape({
   name: yup.string(),
-  email: yup.string().email(),
   password: yup
     .string()
     .transform((value, originalValue) => hashSync(originalValue, 10)),
@@ -30,7 +29,6 @@ export const updateUserSchema = yup.object().shape({
   cellphone: yup.string(),
   birthdate: yup.string(),
   description: yup.string(),
-  isSeller: yup.boolean(),
   cep: yup.string(),
   state: yup.string(),
   street: yup.string(),
