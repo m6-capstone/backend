@@ -61,6 +61,19 @@ yarn typeorm migration:run -d src/data-source.ts
 
 ---
 
+### 2.4. Inicialização
+
+Execute o comando:
+```
+npm run dev
+```
+ou
+```
+yarn dev
+```
+
+---
+
 
 ## 3. Endpoints
 
