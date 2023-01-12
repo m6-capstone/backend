@@ -53,13 +53,13 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Adverts, (adverts) => adverts.user)
+  @OneToMany(() => Adverts, (adverts) => adverts.user, {onDelete: "CASCADE"})
   adverts: Adverts[];
 
-  @OneToMany(() => Comments, (comments) => comments.user)
+  @OneToMany(() => Comments, (comments) => comments.user, {onDelete: "CASCADE"})
   comments: Comments[];
 
-  @OneToOne((type) => Address,{eager: true})
+  @OneToOne((type) => Address,{eager: true, onDelete: "CASCADE"})
   @JoinColumn()
   address: Address;
 }

@@ -51,7 +51,10 @@ export class Adverts {
   @ManyToOne(() => User, (user) => user.adverts, { eager: true })
   user: User;
 
-  @OneToMany(() => Comments, (comments) => comments.adverts, { eager: true })
+  @OneToMany(() => Comments, (comments) => comments.adverts, {
+    eager: true,
+    onDelete: "CASCADE",
+  })
   comments: Comments[];
 
   @CreateDateColumn()

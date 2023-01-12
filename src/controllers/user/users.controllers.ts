@@ -32,7 +32,7 @@ export const createUserController = async (req: Request, res: Response) => {
 
 export const listUserController = async (req: Request, res: Response) => {
   const users = await listUserService();
-  return res.status(200).json(users);
+  return res.status(200).json(instanceToPlain(users));
 };
 
 export const updateUserController = async (req: Request, res: Response) => {
@@ -40,15 +40,14 @@ export const updateUserController = async (req: Request, res: Response) => {
   const id: string = req.users.userId;
 
   const users = await updateUserService(id, { ...UserData });
-  return res.status(200).json(users);
-
+  return res.status(200).json(instanceToPlain(users));
 };
 
 export const retrieveUserController = async (req: Request, res: Response) => {
   const id: string = req.params.id;
 
   const users = await retrieveUserService(id);
-  return res.status(200).json(users);
+  return res.status(200).json(instanceToPlain(users));
 };
 
 export const autoRetrieveUserController = async (
@@ -58,5 +57,5 @@ export const autoRetrieveUserController = async (
   const id: string = req.users.userId;
 
   const users = await autoRetrieveUserService(id);
-  return res.status(200).json(users);
+  return res.status(200).json(instanceToPlain(users));
 };
